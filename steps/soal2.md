@@ -21,38 +21,13 @@ iface eth1 inet static
     netmask 255.255.255.252
     up ip link set dev eth1 up
 
-    # Rute ke Cabang Yui
-    up ip route add 192.232.0.0/23 via 192.232.4.94
-    up ip route add 192.232.3.0/25 via 192.232.4.94
-    up ip route add 192.232.4.0/28 via 192.232.4.94
-    up ip route add 192.232.4.16/28 via 192.232.4.94
-    up ip route add 192.232.4.96/30 via 192.232.4.94
-    up ip route add 192.232.4.100/30 via 192.232.4.94
-    up ip route add 192.232.4.104/30 via 192.232.4.94
-
-    # Rute ke Cabang Hikari
-    up ip route add 192.232.2.0/24 via 192.232.4.110
-    up ip route add 192.232.3.224/27 via 192.232.4.110
-    up ip route add 192.232.4.112/30 via 192.232.4.110
-
-    # Rute ke Cabang Asuka
-    up ip route add 192.232.3.128/26 via 192.232.4.118
-    up ip route add 192.232.4.32/29 via 192.232.4.118
-    up ip route add 192.232.4.80/30 via 192.232.4.118
-    up ip route add 192.232.4.120/30 via 192.232.4.118
-    up ip route add 192.232.4.124/30 via 192.232.4.118
-
-    # Rute ke Cabang Kaji
-    up ip route add 192.232.4.84/30 via 192.232.4.130
-
-    # Rute ke Cabang Misato
-    up ip route add 192.232.4.48/29 via 192.232.4.134
-
-    # Rute ke Cabang Shigeru
-    up ip route add 192.232.4.56/29 via 192.232.4.137
-    up ip route add 192.232.4.72/29 via 192.232.4.137
-    up ip route add 192.232.4.140/30 via 192.232.4.137
-
+# Link A27 ke Router Fuyutsuki
+auto eth2
+iface eth2 inet static
+    address 192.232.4.146
+    netmask 255.255.255.252
+    up ip link set dev eth2 up
+    
     # Rute ke Cabang Fuyutsuki
     up ip route add 192.232.3.192/27 via 192.232.4.145
     up ip route add 192.232.4.40/29 via 192.232.4.145
@@ -60,19 +35,17 @@ iface eth1 inet static
     up ip route add 192.232.4.148/30 via 192.232.4.145
     up ip route add 192.232.4.152/30 via 192.232.4.145
 
-# Link A27 ke Router Fuyutsuki
-auto eth2
-iface eth2 inet static
-    address 192.232.4.146
-    netmask 255.255.255.252
-    up ip link set dev eth2 up
-
 # Link A23 ke Router Shigeru
 auto eth3
 iface eth3 inet static
     address 192.232.4.138
     netmask 255.255.255.252
-    up ip link set dev eth3 up
+    up ip link set dev eth3 up    
+    
+    # Rute ke Cabang Shigeru
+    up ip route add 192.232.4.56/29 via 192.232.4.137
+    up ip route add 192.232.4.72/29 via 192.232.4.137
+    up ip route add 192.232.4.140/30 via 192.232.4.137
 
 # Link A21 ke Router Misato
 auto eth4
@@ -80,6 +53,9 @@ iface eth4 inet static
     address 192.232.4.133
     netmask 255.255.255.252
     up ip link set dev eth4 up
+    
+    # Rute ke Cabang Misato
+    up ip route add 192.232.4.48/29 via 192.232.4.134
 
 # Link A19 ke Router Kaji
 auto eth5
@@ -88,12 +64,22 @@ iface eth5 inet static
     netmask 255.255.255.252
     up ip link set dev eth5 up
 
+    # Rute ke Cabang Kaji
+    up ip route add 192.232.4.84/30 via 192.232.4.130
+
 # Link A13 ke Router Asuka
 auto eth6
 iface eth6 inet static
     address 192.232.4.117
     netmask 255.255.255.252
     up ip link set dev eth6 up
+    
+    # Rute ke Cabang Asuka
+    up ip route add 192.232.3.128/26 via 192.232.4.118
+    up ip route add 192.232.4.32/29 via 192.232.4.118
+    up ip route add 192.232.4.80/30 via 192.232.4.118
+    up ip route add 192.232.4.120/30 via 192.232.4.118
+    up ip route add 192.232.4.124/30 via 192.232.4.118
 
 # Link A9 ke Router Hikari
 auto eth7
@@ -102,12 +88,26 @@ iface eth7 inet static
     netmask 255.255.255.252
     up ip link set dev eth7 up
 
+    # Rute ke Cabang Hikari
+    up ip route add 192.232.2.0/24 via 192.232.4.110
+    up ip route add 192.232.3.224/27 via 192.232.4.110
+    up ip route add 192.232.4.112/30 via 192.232.4.110
+
 # Link A1 ke Router Yui
 auto eth8
 iface eth8 inet static
     address 192.232.4.93
     netmask 255.255.255.252
     up ip link set dev eth8 up
+    
+    # Rute ke Cabang Yui
+    up ip route add 192.232.0.0/23 via 192.232.4.94
+    up ip route add 192.232.3.0/25 via 192.232.4.94
+    up ip route add 192.232.4.0/28 via 192.232.4.94
+    up ip route add 192.232.4.16/28 via 192.232.4.94
+    up ip route add 192.232.4.96/30 via 192.232.4.94
+    up ip route add 192.232.4.100/30 via 192.232.4.94
+    up ip route add 192.232.4.104/30 via 192.232.4.94
 ```
 
 ### Yui
