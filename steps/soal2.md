@@ -5,240 +5,549 @@
 ### Gendou
 
 ```bash
-# Set IP Interface
-ip link set dev eth0 up
-dhclient eth0
+auto lo
+iface lo inet loopback
 
-ip addr add 192.232.4.93/30 dev eth1    # Link A1 ke Yui
-ip addr add 192.232.4.109/30 dev eth2   # Link A9 ke Hikari
-ip addr add 192.232.4.117/30 dev eth3   # Link A13 ke Asuka
-ip addr add 192.232.4.129/30 dev eth4   # Link A19 ke Kaji
-ip addr add 192.232.4.133/30 dev eth5   # Link A21 ke Misato
-ip addr add 192.232.4.138/30 dev eth6   # Link A23 ke Shigeru
-ip addr add 192.232.4.146/30 dev eth7   # Link A27 ke Fuyutsuki
-ip addr add 192.232.4.90/30 dev eth8    # LAN A33 (Switch-Cmd)
+# Interface ke NAT1 (DHCP)
+auto eth0
+iface eth0 inet dhcp
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
 
-ip link set dev eth1 up
-ip link set dev eth2 up
-ip link set dev eth3 up
-ip link set dev eth4 up
-ip link set dev eth5 up
-ip link set dev eth6 up
-ip link set dev eth7 up
-ip link set dev eth8 up
+# LAN A33 (Switch-Cmd / Tokyo3-Core)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.90
+    netmask 255.255.255.252
+    up ip link set dev eth1 up
 
-# Aktifkan IP Forwarding
-sysctl -w net.ipv4.ip_forward=1
+    # Rute ke Cabang Yui
+    up ip route add 192.232.0.0/23 via 192.232.4.94
+    up ip route add 192.232.3.0/25 via 192.232.4.94
+    up ip route add 192.232.4.0/28 via 192.232.4.94
+    up ip route add 192.232.4.16/28 via 192.232.4.94
+    up ip route add 192.232.4.96/30 via 192.232.4.94
+    up ip route add 192.232.4.100/30 via 192.232.4.94
+    up ip route add 192.232.4.104/30 via 192.232.4.94
+
+    # Rute ke Cabang Hikari
+    up ip route add 192.232.2.0/24 via 192.232.4.110
+    up ip route add 192.232.3.224/27 via 192.232.4.110
+    up ip route add 192.232.4.112/30 via 192.232.4.110
+
+    # Rute ke Cabang Asuka
+    up ip route add 192.232.3.128/26 via 192.232.4.118
+    up ip route add 192.232.4.32/29 via 192.232.4.118
+    up ip route add 192.232.4.80/30 via 192.232.4.118
+    up ip route add 192.232.4.120/30 via 192.232.4.118
+    up ip route add 192.232.4.124/30 via 192.232.4.118
+
+    # Rute ke Cabang Kaji
+    up ip route add 192.232.4.84/30 via 192.232.4.130
+
+    # Rute ke Cabang Misato
+    up ip route add 192.232.4.48/29 via 192.232.4.134
+
+    # Rute ke Cabang Shigeru
+    up ip route add 192.232.4.56/29 via 192.232.4.137
+    up ip route add 192.232.4.72/29 via 192.232.4.137
+    up ip route add 192.232.4.140/30 via 192.232.4.137
+
+    # Rute ke Cabang Fuyutsuki
+    up ip route add 192.232.3.192/27 via 192.232.4.145
+    up ip route add 192.232.4.40/29 via 192.232.4.145
+    up ip route add 192.232.4.64/29 via 192.232.4.145
+    up ip route add 192.232.4.148/30 via 192.232.4.145
+    up ip route add 192.232.4.152/30 via 192.232.4.145
+
+# Link A27 ke Router Fuyutsuki
+auto eth2
+iface eth2 inet static
+    address 192.232.4.146
+    netmask 255.255.255.252
+    up ip link set dev eth2 up
+
+# Link A23 ke Router Shigeru
+auto eth3
+iface eth3 inet static
+    address 192.232.4.138
+    netmask 255.255.255.252
+    up ip link set dev eth3 up
+
+# Link A21 ke Router Misato
+auto eth4
+iface eth4 inet static
+    address 192.232.4.133
+    netmask 255.255.255.252
+    up ip link set dev eth4 up
+
+# Link A19 ke Router Kaji
+auto eth5
+iface eth5 inet static
+    address 192.232.4.129
+    netmask 255.255.255.252
+    up ip link set dev eth5 up
+
+# Link A13 ke Router Asuka
+auto eth6
+iface eth6 inet static
+    address 192.232.4.117
+    netmask 255.255.255.252
+    up ip link set dev eth6 up
+
+# Link A9 ke Router Hikari
+auto eth7
+iface eth7 inet static
+    address 192.232.4.109
+    netmask 255.255.255.252
+    up ip link set dev eth7 up
+
+# Link A1 ke Router Yui
+auto eth8
+iface eth8 inet static
+    address 192.232.4.93
+    netmask 255.255.255.252
+    up ip link set dev eth8 up
 ```
 
 ### Yui
 
 ```bash
-ip addr add 192.232.4.94/30 dev eth0    # Link A1 ke Gendou
-ip addr add 192.232.4.97/30 dev eth1    # Link A2 ke Shinji
-ip addr add 192.232.4.101/30 dev eth2   # Link A4 ke Rei
-ip addr add 192.232.4.105/30 dev eth3   # Link A6 ke Mari
-ip addr add 192.232.3.126/25 dev eth4     # LAN A8 (Switch-Hangar)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
-ip link set dev eth2 up
-ip link set dev eth3 up
-ip link set dev eth4 up
+# Link A1 ke Router Gendou
+auto eth0
+iface eth0 inet static
+    address 192.232.4.94
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.93
+    up ip route add 192.232.4.14/28 via 192.232.4.98
+    up ip route add 192.232.1.254/23 via 192.232.4.102
+    up ip route add 192.232.4.30/28 via 192.232.4.106
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A8 (Switch-Hangar / Hangar-Crew)
+auto eth1
+iface eth1 inet static
+    address 192.232.3.126
+    netmask 255.255.255.128
+    up ip link set dev eth1 up
+
+# Link A6 ke Router Mari
+auto eth2
+iface eth2 inet static
+    address 192.232.4.105
+    netmask 255.255.255.252
+    up ip link set dev eth2 up
+
+# Link A4 ke Router Rei
+auto eth3
+iface eth3 inet static
+    address 192.232.4.101
+    netmask 255.255.255.252
+    up ip link set dev eth3 up
+
+# Link A2 ke Router Shinji
+auto eth4
+iface eth4 inet static
+    address 192.232.4.97
+    netmask 255.255.255.252
+    up ip link set dev eth4 up
 ```
 
 ### Rei
 
 ```bash
-ip addr add 192.232.4.102/30 dev eth0   # Link A4 ke Yui
-ip addr add 192.232.1.254/23 dev eth1     # LAN A5 (Switch-Quarters)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A4 ke Router Yui
+auto eth0
+iface eth0 inet static
+    address 192.232.4.102
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.101
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A5 (Switch-Quarters / Quarters)
+auto eth1
+iface eth1 inet static
+    address 192.232.1.254
+    netmask 255.255.254.0
+    up ip link set dev eth1 up
 ```
 
 ### Shinji
 
 ```bash
-ip addr add 192.232.4.98/30 dev eth0    # Link A2 ke Yui
-ip addr add 192.232.4.14/28 dev eth1     # LAN A3 (Switch-Garden)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A2 ke Router Yui
+auto eth0
+iface eth0 inet static
+    address 192.232.4.98
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.97
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A3 (Switch-Garden / Garden-Staff)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.14
+    netmask 255.255.255.240
+    up ip link set dev eth1 up
 ```
 
 ### Mari
 
 ```bash
-ip addr add 192.232.4.106/30 dev eth0   # Link A6 ke Yui
-ip addr add 192.232.4.30/28 dev eth1    # LAN A7 (Switch-Dock)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A6 ke Router Yui
+auto eth0
+iface eth0 inet static
+    address 192.232.4.106
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.105
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A7 (Switch-Dock / Dock-Crew)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.30
+    netmask 255.255.255.240
+    up ip link set dev eth1 up
 ```
 
 ### Hikari
 
 ```bash
-ip addr add 192.232.4.110/30 dev eth0   # Link A9 ke Gendou
-ip addr add 192.232.4.113/30 dev eth1   # Link A10 ke Kaworu
-ip addr add 192.232.2.254/24 dev eth2     # LAN A12 (Switch-Comm)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
-ip link set dev eth2 up
+# Link A9 ke Router Gendou
+auto eth0
+iface eth0 inet static
+    address 192.232.4.110
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.109
+    up ip route add 192.232.3.224/27 via 192.232.4.114
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A12 (Switch-Comm / Comm-Net)
+auto eth1
+iface eth1 inet static
+    address 192.232.2.254
+    netmask 255.255.255.0
+    up ip link set dev eth1 up
+
+# Link A10 ke Router Kaworu
+auto eth2
+iface eth2 inet static
+    address 192.232.4.113
+    netmask 255.255.255.252
+    up ip link set dev eth2 up
 ```
 
 ### Kaworu
 
 ```bash
-ip addr add 192.232.4.114/30 dev eth0   # Link A10 ke Hikari
-ip addr add 192.232.3.224/27 dev eth1   # LAN A11 (Switch-Relay)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A10 ke Router Hikari
+auto eth0
+iface eth0 inet static
+    address 192.232.4.114
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.113
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A11 (Switch-Relay / Relay-Node)
+auto eth1
+iface eth1 inet static
+    address 192.232.3.254
+    netmask 255.255.255.224
+    up ip link set dev eth1 up
 ```
 
 ### Asuka
 
 ```bash
-ip addr add 192.232.4.118/30 dev eth0   # Link A13 ke Gendou
-ip addr add 192.232.4.121/30 dev eth1   # Link A14 ke Kensuke
-ip addr add 192.232.4.125/30 dev eth2   # Link A16 ke Ritsuko
-ip addr add 192.232.4.82/30 dev eth3    # LAN A18 (Switch-Archive)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
-ip link set dev eth2 up
-ip link set dev eth3 up
+# Link A13 ke Router Gendou
+auto eth0
+iface eth0 inet static
+    address 192.232.4.118
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.117
+    up ip route add 192.232.3.128/26 via 192.232.4.122
+    up ip route add 192.232.4.32/29 via 192.232.4.126
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A18 (Switch-Archive / Archive-Vault)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.82
+    netmask 255.255.255.252
+    up ip link set dev eth1 up
+
+# Link A16 ke Router Ritsuko
+auto eth2
+iface eth2 inet static
+    address 192.232.4.125
+    netmask 255.255.255.252
+    up ip link set dev eth2 up
+
+# Link A14 ke Router Kensuke
+auto eth3
+iface eth3 inet static
+    address 192.232.4.121
+    netmask 255.255.255.252
+    up ip link set dev eth3 up
 ```
 
 ### Kensuke
 
 ```bash
-ip addr add 192.232.4.122/30 dev eth0   # Link A14 ke Asuka
-ip addr add 192.232.3.190/26 dev eth1   # LAN A15 (Switch-Bunker)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A14 ke Router Asuka
+auto eth0
+iface eth0 inet static
+    address 192.232.4.122
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.121
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A15 (Switch-Bunker / Sachiel)
+auto eth1
+iface eth1 inet static
+    address 192.232.3.190
+    netmask 255.255.255.192
+    up ip link set dev eth1 up
 ```
 
 ### Ritsuko
 
 ```bash
-ip addr add 192.232.4.126/30 dev eth0   # Link A16 ke Asuka
-ip addr add 192.232.4.38/29 dev eth1    # LAN A17 (Switch-Lab)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A16 ke Router Asuka
+auto eth0
+iface eth0 inet static
+    address 192.232.4.126
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.125
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A17 (Switch-Lab / Entry-Plug, Dummy-Plug)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.38
+    netmask 255.255.255.248
+    up ip link set dev eth1 up
 ```
 
 ### Kaji
 
 ```bash
-ip addr add 192.232.4.130/30 dev eth0   # Link A19 ke Gendou
-ip addr add 192.232.4.86/30 dev eth1    # LAN A20 (Switch-Intel)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A19 ke Router Gendou
+auto eth0
+iface eth0 inet static
+    address 192.232.4.130
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.129
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A20 (Switch-Intel / Spy)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.86
+    netmask 255.255.255.252
+    up ip link set dev eth1 up
 ```
 
 ### Misato
 
 ```bash
-ip addr add 192.232.4.134/30 dev eth0   # Link A21 ke Gendou
-ip addr add 192.232.4.54/29 dev eth1    # LAN A22 (Switch-Cage)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A21 ke Router Gendou
+auto eth0
+iface eth0 inet static
+    address 192.232.4.134
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.133
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A22 (Switch-Cage / Unit-01, Unit-02, Unit-00)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.54
+    netmask 255.255.255.248
+    up ip link set dev eth1 up
 ```
 
 ### Shigeru
 
 ```bash
-ip addr add 192.232.4.137/30 dev eth0   # Link A23 ke Gendou
-ip addr add 192.232.4.141/30 dev eth1   # Link A24 ke Makoto
-ip addr add 192.232.4.75/29 dev eth2    # LAN A26 (Switch-Monolith)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
-ip link set dev eth2 up
+# Link A23 ke Router Gendou
+auto eth0
+iface eth0 inet static
+    address 192.232.4.137
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.138
+    up ip route add 192.232.4.56/29 via 192.232.4.142
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A26 (Switch-Monolith / Zeruel, Armisael)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.75
+    netmask 255.255.255.248
+    up ip link set dev eth1 up
+
+# Link A24 ke Router Makoto
+auto eth2
+iface eth2 inet static
+    address 192.232.4.141
+    netmask 255.255.255.252
+    up ip link set dev eth2 up
 ```
 
 ### Makoto
 
 ```bash
-ip addr add 192.232.4.142/30 dev eth0   # Link A24 ke Shigeru
-ip addr add 192.232.4.62/29 dev eth1    # LAN A25 (Switch-Radar)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A24 ke Router Shigeru
+auto eth0
+iface eth0 inet static
+    address 192.232.4.142
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.141
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A25 (Switch-Radar / Radar-Array)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.62
+    netmask 255.255.255.248
+    up ip link set dev eth1 up
 ```
 
 ### Toji
 
 ```bash
-ip addr add 192.232.4.150/30 dev eth0   # Link A28 ke Fuyutsuki
-ip addr add 192.232.4.67/29 dev eth1    # LAN A29 (Switch-Dogma)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A28 ke Router Fuyutsuki
+auto eth0
+iface eth0 inet static
+    address 192.232.4.150
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.149
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A29 (Switch-Dogma / Lilith, Adam)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.67
+    netmask 255.255.255.248
+    up ip link set dev eth1 up
 ```
 
 ### Fuyutsuki
 
 ```bash
-ip addr add 192.232.4.145/30 dev eth0   # Link A27 ke Gendou
-ip addr add 192.232.4.149/30 dev eth1   # Link A28 ke Toji
-ip addr add 192.232.4.154/30 dev eth2   # Link A30 ke Maya
-ip addr add 192.232.4.46/29 dev eth3    # LAN A32 (Switch-Terminal)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
-ip link set dev eth2 up
-ip link set dev eth3 up
+# Link A27 ke Router Gendou
+auto eth0
+iface eth0 inet static
+    address 192.232.4.145
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.146
+    up ip route add 192.232.4.64/29 via 192.232.4.150
+    up ip route add 192.232.3.192/27 via 192.232.4.153
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A32 (Switch-Terminal / Magi-Casper, Magi-Balthasar, Magi-Melchior)
+auto eth1
+iface eth1 inet static
+    address 192.232.4.46
+    netmask 255.255.255.248
+    up ip link set dev eth1 up
+
+# Link A30 ke Router Maya
+auto eth2
+iface eth2 inet static
+    address 192.232.4.154
+    netmask 255.255.255.252
+    up ip link set dev eth2 up
+
+# Link A28 ke Router Toji
+auto eth3
+iface eth3 inet static
+    address 192.232.4.149
+    netmask 255.255.255.252
+    up ip link set dev eth3 up
 ```
 
 ### Maya
 
 ```bash
-ip addr add 192.232.4.153/30 dev eth0   # Link A30 ke Fuyutsuki
-ip addr add 192.232.3.222/27 dev eth1   # LAN A31 (Switch-Medic)
+auto lo
+iface lo inet loopback
 
-ip link set dev eth0 up
-ip link set dev eth1 up
+# Link A30 ke Router Fuyutsuki
+auto eth0
+iface eth0 inet static
+    address 192.232.4.153
+    netmask 255.255.255.252
+    up ip link set dev eth0 up
+    up sysctl -w net.ipv4.ip_forward=1
+    up ip route add default via 192.232.4.154
 
-sysctl -w net.ipv4.ip_forward=1
+# LAN A31 (Switch-Medic / Pen-Pen, Medic-Bay)
+auto eth1
+iface eth1 inet static
+    address 192.232.3.222
+    netmask 255.255.255.224
+    up ip link set dev eth1 up
 ```
 
 ## Verifikasi Koneksi
