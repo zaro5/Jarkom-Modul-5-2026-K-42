@@ -10,7 +10,11 @@ ping -c 2 192.232.3.193
 ping -c 2 192.232.4.89
 ```
 
-## Menjalankan Listener
+## Menjalankan Listener 
+
+### Jalankan Script
+
+Jalankan script `penpen.sh` dan `tokyo.sh` yang sudah ada. Berikut penjelasannya.
 
 ### Pen-Pen
 
@@ -54,6 +58,14 @@ done
 Setelah berhasil dilakukan, masuk lagi ke node `Lilith` dan kirimkan pesan kosong.
 
 ```bash
-echo "" | nc -n -w 2 192.232.4.89 80
-echo "" | nc -n -w 2 192.232.4.89 8080
+echo "" | nc -n -w 2 192.232.4.106 80
+echo "" | nc -n -w 2 192.232.4.106 8080
+```
+
+### Pada Port yang Dilarang
+
+Uji coba pada port 22
+
+```bash
+nc -n -v -w 2 192.232.4.106 22
 ```

@@ -7,12 +7,12 @@
 ```bash
 auto lo
 iface lo inet loopback
-
+ 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.49
+    address 192.232.4.65
     netmask 255.255.255.248
-    gateway 192.232.4.54
+    gateway 192.232.4.70
     up ip link set dev eth0 up
 ```
 
@@ -24,9 +24,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.50
+    address 192.232.4.66
     netmask 255.255.255.248
-    gateway 192.232.4.54
+    gateway 192.232.4.70
     up ip link set dev eth0 up
 ```
 
@@ -38,9 +38,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.51
+    address 192.232.4.67
     netmask 255.255.255.248
-    gateway 192.232.4.54
+    gateway 192.232.4.70
     up ip link set dev eth0 up
 ```
 
@@ -53,8 +53,8 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet static
     address 192.232.4.1
-    netmask 255.255.255.240
-    gateway 192.232.4.14
+    netmask 255.255.255.224
+    gateway 192.232.4.30
     up ip addr add 192.232.4.1/28 dev eth0
     up ip link set dev eth0 up
     ip route add default via 192.232.4.14
@@ -82,9 +82,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.17
+    address 192.232.4.33
     netmask 255.255.255.240
-    gateway 192.232.4.30
+    gateway 192.232.4.46
     up ip link set dev eth0 up
 ```
 
@@ -152,9 +152,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.33
+    address 192.232.4.49
     netmask 255.255.255.248
-    gateway 192.232.4.38
+    gateway 192.232.4.54
     up ip link set dev eth0 up
 ```
 
@@ -166,9 +166,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.36
+    address 192.232.4.50
     netmask 255.255.255.248
-    gateway 192.232.4.38
+    gateway 192.232.4.54
     up ip link set dev eth0 up
 ```
 
@@ -180,9 +180,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.81
+    address 192.232.4.97
     netmask 255.255.255.252
-    gateway 192.232.4.82
+    gateway 192.232.4.98
     up ip link set dev eth0 up
 ```
 
@@ -194,9 +194,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.85
+    address 192.232.4.101
     netmask 255.255.255.252
-    gateway 192.232.4.86
+    gateway 192.232.4.102
     up ip link set dev eth0 up
 ```
 
@@ -208,9 +208,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.57
+    address 192.232.4.73
     netmask 255.255.255.248
-    gateway 192.232.4.62
+    gateway 192.232.4.78
     up ip link set dev eth0 up
 ```
 
@@ -222,9 +222,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.74
+    address 192.232.4.89
     netmask 255.255.255.248
-    gateway 192.232.4.75
+    gateway 192.232.4.94
     up ip link set dev eth0 up
 ```
 
@@ -236,9 +236,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.73
+    address 192.232.4.90
     netmask 255.255.255.248
-    gateway 192.232.4.75
+    gateway 192.232.4.94
     up ip link set dev eth0 up
 ```
 
@@ -250,11 +250,11 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.66
+    address 192.232.4.81
     netmask 255.255.255.248
-    gateway 192.232.4.67
+    gateway 192.232.4.86
     up ip link set dev eth0 up
-    up ip route add default via 192.232.4.67
+    up ip route add default via 192.232.4.86
 ```
 
 ### Adam
@@ -265,9 +265,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.65
+    address 192.232.4.82
     netmask 255.255.255.248
-    gateway 192.232.4.67
+    gateway 192.232.4.86
     up ip link set dev eth0 up
 ```
 
@@ -309,9 +309,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.41
+    address 192.232.4.57
     netmask 255.255.255.248
-    gateway 192.232.4.46
+    gateway 192.232.4.62
     up ip link set dev eth0 up
 ```
 
@@ -323,9 +323,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.42
+    address 192.232.4.58
     netmask 255.255.255.248
-    gateway 192.232.4.46
+    gateway 192.232.4.62
     up ip link set dev eth0 up
     up ip route add default via 192.232.4.46
 ```
@@ -338,9 +338,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.43
+    address 192.232.4.59
     netmask 255.255.255.248
-    gateway 192.232.4.46
+    gateway 192.232.4.62
     up ip link set dev eth0 up
 ```
 
@@ -352,9 +352,9 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 192.232.4.89
+    address 192.232.4.105
     netmask 255.255.255.252
-    gateway 192.232.4.90
+    gateway 192.232.4.106
     up ip link set dev eth0 up
 ```
 

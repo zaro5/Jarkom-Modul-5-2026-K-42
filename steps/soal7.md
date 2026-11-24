@@ -37,60 +37,35 @@ ip route add default via 192.232.4.67 2>/dev/null
 
 ## Pengujian
 
-### Tahapan awal
-
-Sebelum melakukan netcat, lakukan pengecekan apakah Lilith terhubung ke Magi-Balthasar. 
-
-```bash
-ping -c 4 192.232.4.42
-```
-
 ### Uji Coba Listener
 
-#### Uji Coba Magi-Balthasar
+Jalankan script yang telah dibuat pada node Balthasar, Casper, dan Melchior. Apabila listener telah berjalan, kirimkan pesan dari node `Lilith` dan cek log-nya.
 
-Magi Balthasar harus menjalankan nc agar dapat mendengarkan dari port yang telah ditentukan (5000 dan 5001)
+#### Kirimkan ke Casper
 
 ```bash
-killall nc 2>/dev/null
-nc -l -n -v -p 5000
+echo "Pesan dari Lilith ke Casper Port 5000" | nc -n 192.232.4.57 5000
 ```
 
-Kemudian kirimkan pesan dari node `Lilith`.
+#### Kirimkan ke Balthasar
 
 ```bash
-echo "Halo Balthasar dari Lilith" | nc -n 192.232.4.42 5000
+echo "Pesan dari Lilith ke Balthasar Port 5000" | nc -n 192.232.4.58 5000
+echo "Pesan dari Lilith ke Balthasar Port 5001" | nc -n 192.232.4.58 5001
 ```
 
-**Catatan**
-Lakukan hal yang sama untuk port `5001`
-
-#### Uji Coba Magi-Casper
-
-Magi-Casper harus menjalankan nc agar dapat mendengarkan dari port yang telah ditentukan (5000)
+#### Kirimkan ke Melchior
 
 ```bash
-killall nc 2>/dev/null
-nc -l -n -v -p 5000
+echo "Pesan dari Lilith ke Melchior Port 5000" | nc -n 192.232.4.59 5000
 ```
 
-Kemudian kirimkan pesan dari node `Lilith`.
+Apabila sudah, lakukan pengecekan dari masing-masing node `Magi` dan matikan listener apabila telah selesai.
 
 ```bash
-echo "Halo Casper dari Lilith" | nc -n 192.232.4.41 5000
-```
+pkill -f "melchior.sh"
+pkill -f "balthasar.sh"
+pkill -f "casper.sh"
 
-#### Uji Coba Magi-Melchior
-
-Magi-Melchior harus menjalankan nc agar dapat mendengarkan dari port yang telah ditentukan (5000)
-
-```bash
-killall nc 2>/dev/null
-nc -l -n -v -p 5000
-```
-
-Kemudian kirimkan pesan dari node `Lilith`.
-
-```bash
-echo "Halo Melchior dari Lilith" | nc -n 192.232.4.43 5000
+kill 409 2>/dev/null || killall nc 2>/dev/null
 ```
