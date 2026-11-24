@@ -1,40 +1,5 @@
 # Soal 7
 
-## Konfigurasi
-
-Router yang akan berhubungan dengan soal 7 adalah `Toji` dan `Fuyutsuki`. Lakukan konfigurasi dibawah ini agar router dapat terhubung.
-
-### Pada Toji
-
-```bash
-sysctl -w net.ipv4.ip_forward=1
-ip route add default via 192.232.4.149 2>/dev/null
-```
-
-### Pada Fuyutsuki
-
-```bash
-sysctl -w net.ipv4.ip_forward=1
-# Rute turun ke LAN Lilith via Toji
-ip route add 192.232.4.64/29 via 192.232.4.150 2>/dev/null
-# Default route naik ke Gendou
-ip route add default via 192.232.4.146 2>/dev/null
-```
-
-Selanjutnya, pastikan pula node `Magi-Balthasar` terhubung ke `Fuyutsuki`.
-
-### Magi-Balthasar
-
-```bash
-ip route add default via 192.232.4.46 2>/dev/null
-```
-
-### Pada Lilith
-
-```bash
-ip route add default via 192.232.4.67 2>/dev/null
-```
-
 ## Pengujian
 
 ### Uji Coba Listener
