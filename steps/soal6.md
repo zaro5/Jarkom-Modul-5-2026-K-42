@@ -55,7 +55,9 @@ iface eth0 inet static
     address 192.232.4.1
     netmask 255.255.255.240
     gateway 192.232.4.14
+    up ip addr add 192.232.4.1/28 dev eth0
     up ip link set dev eth0 up
+    ip route add default via 192.232.4.14
 ```
 
 ### Quarters
@@ -252,6 +254,7 @@ iface eth0 inet static
     netmask 255.255.255.248
     gateway 192.232.4.67
     up ip link set dev eth0 up
+    up ip route add default via 192.232.4.67
 ```
 
 ### Adam
@@ -279,7 +282,9 @@ iface eth0 inet static
     address 192.232.3.193
     netmask 255.255.255.224
     gateway 192.232.3.222
+    ip addr add 192.232.3.193/27 dev eth0
     up ip link set dev eth0 up
+    ip route add default via 192.232.3.222
 ```
 
 ### Medic-Bay
@@ -322,6 +327,7 @@ iface eth0 inet static
     netmask 255.255.255.248
     gateway 192.232.4.46
     up ip link set dev eth0 up
+    up ip route add default via 192.232.4.46
 ```
 
 ### Magi Melchior
@@ -351,3 +357,39 @@ iface eth0 inet static
     gateway 192.232.4.90
     up ip link set dev eth0 up
 ```
+
+## Pengujian
+
+Untuk soal 6, pengujian dilakukan dengan menjalanakan ping ke gateway dan IP Address node lain.
+
+```bash
+ping -c 4 <IP_ADDRESS>
+```
+
+## Apabila Error
+
+Apabila terjadi error, atau terjadi hal dibawah ini:
+
+![alt text](../assets/6_error-handling.png)
+
+Tambahkan routing pada konfigurasi (melalui GNS3 agar PERMANEN), dan jalankan juga pada terminal apabila hanya butuh untuk sementara.
+
+### Untuk konfigurasi
+
+```bash
+up ip route add <IP_Address_Yang_Dituju> via <Jalur_IP_Address_Dari_Routernya>
+```
+
+### Untuk terminal
+
+```bash
+ip route add <IP_Address_Yang_Dituju> via <Jalur_IP_Address_Dari_Routernya>
+```
+
+Contohnya:
+
+Pada gambar dibawah ini, Router `Asuka` tidak memiliki routing ke next-hop, A15.
+
+![alt text](../assets/6_topo-Asuka-A15.png)
+
+![alt text](../assets/6_ip-route-add.png)

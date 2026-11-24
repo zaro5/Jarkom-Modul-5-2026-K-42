@@ -518,7 +518,7 @@ iface eth1 inet static
 
 # Link A30 ke Router Maya
 auto eth2
-iface eth2 inet static
+iface eth2 inet static 
     address 192.232.4.154
     netmask 255.255.255.252
     up ip link set dev eth2 up
@@ -545,6 +545,7 @@ iface eth0 inet static
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
     up ip route add default via 192.232.4.154
+    up ip route add 192.232.4.148/30 via 192.232.4.154
 
 # LAN A31 (Switch-Medic / Pen-Pen, Medic-Bay)
 auto eth1

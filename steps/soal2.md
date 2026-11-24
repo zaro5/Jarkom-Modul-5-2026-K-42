@@ -28,13 +28,6 @@ iface eth2 inet static
     netmask 255.255.255.252
     up ip link set dev eth2 up
     
-    # Rute ke Cabang Fuyutsuki
-    up ip route add 192.232.3.192/27 via 192.232.4.145
-    up ip route add 192.232.4.40/29 via 192.232.4.145
-    up ip route add 192.232.4.64/29 via 192.232.4.145
-    up ip route add 192.232.4.148/30 via 192.232.4.145
-    up ip route add 192.232.4.152/30 via 192.232.4.145
-
 # Link A23 ke Router Shigeru
 auto eth3
 iface eth3 inet static
@@ -42,20 +35,12 @@ iface eth3 inet static
     netmask 255.255.255.252
     up ip link set dev eth3 up    
     
-    # Rute ke Cabang Shigeru
-    up ip route add 192.232.4.56/29 via 192.232.4.137
-    up ip route add 192.232.4.72/29 via 192.232.4.137
-    up ip route add 192.232.4.140/30 via 192.232.4.137
-
 # Link A21 ke Router Misato
 auto eth4
 iface eth4 inet static
     address 192.232.4.133
     netmask 255.255.255.252
     up ip link set dev eth4 up
-    
-    # Rute ke Cabang Misato
-    up ip route add 192.232.4.48/29 via 192.232.4.134
 
 # Link A19 ke Router Kaji
 auto eth5
@@ -64,9 +49,6 @@ iface eth5 inet static
     netmask 255.255.255.252
     up ip link set dev eth5 up
 
-    # Rute ke Cabang Kaji
-    up ip route add 192.232.4.84/30 via 192.232.4.130
-
 # Link A13 ke Router Asuka
 auto eth6
 iface eth6 inet static
@@ -74,24 +56,12 @@ iface eth6 inet static
     netmask 255.255.255.252
     up ip link set dev eth6 up
     
-    # Rute ke Cabang Asuka
-    up ip route add 192.232.3.128/26 via 192.232.4.118
-    up ip route add 192.232.4.32/29 via 192.232.4.118
-    up ip route add 192.232.4.80/30 via 192.232.4.118
-    up ip route add 192.232.4.120/30 via 192.232.4.118
-    up ip route add 192.232.4.124/30 via 192.232.4.118
-
 # Link A9 ke Router Hikari
 auto eth7
 iface eth7 inet static
     address 192.232.4.109
     netmask 255.255.255.252
     up ip link set dev eth7 up
-
-    # Rute ke Cabang Hikari
-    up ip route add 192.232.2.0/24 via 192.232.4.110
-    up ip route add 192.232.3.224/27 via 192.232.4.110
-    up ip route add 192.232.4.112/30 via 192.232.4.110
 
 # Link A1 ke Router Yui
 auto eth8
@@ -100,14 +70,6 @@ iface eth8 inet static
     netmask 255.255.255.252
     up ip link set dev eth8 up
     
-    # Rute ke Cabang Yui
-    up ip route add 192.232.0.0/23 via 192.232.4.94
-    up ip route add 192.232.3.0/25 via 192.232.4.94
-    up ip route add 192.232.4.0/28 via 192.232.4.94
-    up ip route add 192.232.4.16/28 via 192.232.4.94
-    up ip route add 192.232.4.96/30 via 192.232.4.94
-    up ip route add 192.232.4.100/30 via 192.232.4.94
-    up ip route add 192.232.4.104/30 via 192.232.4.94
 ```
 
 ### Yui
@@ -123,10 +85,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.93
-    up ip route add 192.232.4.14/28 via 192.232.4.98
-    up ip route add 192.232.1.254/23 via 192.232.4.102
-    up ip route add 192.232.4.30/28 via 192.232.4.106
 
 # LAN A8 (Switch-Hangar / Hangar-Crew)
 auto eth1
@@ -170,7 +128,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.101
 
 # LAN A5 (Switch-Quarters / Quarters)
 auto eth1
@@ -193,7 +150,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.97
 
 # LAN A3 (Switch-Garden / Garden-Staff)
 auto eth1
@@ -216,7 +172,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.105
 
 # LAN A7 (Switch-Dock / Dock-Crew)
 auto eth1
@@ -239,8 +194,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.109
-    up ip route add 192.232.3.224/27 via 192.232.4.114
 
 # LAN A12 (Switch-Comm / Comm-Net)
 auto eth1
@@ -270,7 +223,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.113
 
 # LAN A11 (Switch-Relay / Relay-Node)
 auto eth1
@@ -293,9 +245,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.117
-    up ip route add 192.232.3.128/26 via 192.232.4.122
-    up ip route add 192.232.4.32/29 via 192.232.4.126
 
 # LAN A18 (Switch-Archive / Archive-Vault)
 auto eth1
@@ -332,7 +281,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.121
 
 # LAN A15 (Switch-Bunker / Sachiel)
 auto eth1
@@ -355,7 +303,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.125
 
 # LAN A17 (Switch-Lab / Entry-Plug, Dummy-Plug)
 auto eth1
@@ -378,7 +325,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.129
 
 # LAN A20 (Switch-Intel / Spy)
 auto eth1
@@ -401,7 +347,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.133
 
 # LAN A22 (Switch-Cage / Unit-01, Unit-02, Unit-00)
 auto eth1
@@ -424,8 +369,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.138
-    up ip route add 192.232.4.56/29 via 192.232.4.142
 
 # LAN A26 (Switch-Monolith / Zeruel, Armisael)
 auto eth1
@@ -455,7 +398,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.141
 
 # LAN A25 (Switch-Radar / Radar-Array)
 auto eth1
@@ -478,7 +420,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.149
 
 # LAN A29 (Switch-Dogma / Lilith, Adam)
 auto eth1
@@ -501,9 +442,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.146
-    up ip route add 192.232.4.64/29 via 192.232.4.150
-    up ip route add 192.232.3.192/27 via 192.232.4.153
 
 # LAN A32 (Switch-Terminal / Magi-Casper, Magi-Balthasar, Magi-Melchior)
 auto eth1
@@ -540,7 +478,6 @@ iface eth0 inet static
     netmask 255.255.255.252
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
-    up ip route add default via 192.232.4.154
 
 # LAN A31 (Switch-Medic / Pen-Pen, Medic-Bay)
 auto eth1
