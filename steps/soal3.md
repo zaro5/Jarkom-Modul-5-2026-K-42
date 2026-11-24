@@ -126,6 +126,7 @@ iface eth0 inet static
     up ip link set dev eth0 up
     up sysctl -w net.ipv4.ip_forward=1
     up ip route add default via 192.232.4.93
+    up ip route add 192.232.4.0/28 via 192.232.4.98
     up ip route add 192.232.4.14/28 via 192.232.4.98
     up ip route add 192.232.1.254/23 via 192.232.4.102
     up ip route add 192.232.4.30/28 via 192.232.4.106
@@ -298,6 +299,7 @@ iface eth0 inet static
     up ip route add default via 192.232.4.117
     up ip route add 192.232.3.128/26 via 192.232.4.122
     up ip route add 192.232.4.32/29 via 192.232.4.126
+    
 
 # LAN A18 (Switch-Archive / Archive-Vault)
 auto eth1
