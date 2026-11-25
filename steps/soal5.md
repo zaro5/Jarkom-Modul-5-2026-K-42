@@ -1,6 +1,6 @@
 # Soal 5
 
-Pada soal 5 diminta untuk menjadikan router `Gendou` menjadi `Stateful Firewall` agar dapat mengundi interface eth0/NAT1. 
+pada soal 5, diminta untuk membuat aturan `firewall`. Yakni; semua lalu lintas di `INPUT` dan `FORWARD` akan ditolak, hanya mengizinkan paket balasan dari internet yang koneksinya diinisiasi oleh host internal, hanya mengizinkan subnet internal mengirim koneksi keluar melalui `FORWARD`, mengizinkan seluruh subnet untuk komunikasi di `FORWARD`, mengizinkan subnet internal menghubungi Gendou dengan `INPUT`, dan mengizinkan interface `lo` serta DHXP pada eth0.
 
 ## Script
 

@@ -8,7 +8,7 @@ Setelah break_nat.sh dijalankan, lakukan
 
 ### Router Misato
 
-Pada router `Missato`, lakukan pengeecekan dengan iptables. Untuk menampilkan seluruh aturan di rantai `POSTROUTING` pada tabel `nat`. Dengan perintah inin juga dapat mengetahui rule SNAT ke 172.31.99.1 berada di baris berapa  .
+Pada router `Missato`, lakukan pengeecekan dengan iptables. Untuk menampilkan seluruh aturan di rantai `POSTROUTING` pada tabel `nat`. Dengan perintah ini juga dapat mengetahui rule SNAT ke 172.31.99.1 berada di baris berapa.
 
 ```bash
 iptables -t nat -L POSTROUTING -n -v --line-numbers

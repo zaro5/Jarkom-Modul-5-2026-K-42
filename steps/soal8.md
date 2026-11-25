@@ -10,7 +10,7 @@ ping -c 2 192.232.3.193
 ping -c 2 192.232.4.89
 ```
 
-## Menjalankan Listener 
+## Menjalankan Listener
 
 ### Jalankan Script
 

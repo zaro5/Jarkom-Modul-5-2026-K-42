@@ -40,7 +40,7 @@ sysctl -w net.ipv4.ip_forward=1
 ## Penjelasan
 
 - Mengapa Armisael masih bisa ping ke gateway-nya sendiri?
-    Karena link lokal antara Armisael dan interface LAN Shigeru berada dalam satu segmen, sehingga tidak membutuhkan IP forwarding maupun tabel routing eksternal. 
+    Karena link lokal antara Armisael dan interface LAN Shigeru berada dalam satu segmen, sehingga tidak membutuhkan IP forwarding maupun tabel routing eksternal.
 
 - Mengapa Lilith tidak mendapat balasan dari Armisael?
     Paket dari Lilith menuju Armisael terhenti di Shigeru karena aturan `blackhole` membuang paket tersebut, ditambah aturan `ip rule` dan matinya `ip_forward` pada Shigeru yang memutus komunikasi dua arah.

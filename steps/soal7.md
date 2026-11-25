@@ -1,6 +1,8 @@
 # Soal 7
 
-## Pengujian
+## Apa yang teradi?
+
+Pada soal ini diminta untuk mengaktifkan listener (daemon) pada node `Casper`, `Balthasar`, dan `Melchior`.
 
 ### Uji Coba Listener
 
@@ -29,8 +31,17 @@ Apabila sudah, lakukan pengecekan dari masing-masing node `Magi` dan matikan lis
 
 ```bash
 pkill -f "melchior.sh"
-pkill -f "balthasar.sh"
-pkill -f "casper.sh"
-
 kill 409 2>/dev/null || killall nc 2>/dev/null
 ```
+
+```bash
+pkill -f "balthasar.sh"
+kill 409 2>/dev/null || killall nc 2>/dev/null
+```
+
+```bash
+pkill -f "casper.sh"
+kill 409 2>/dev/null || killall nc 2>/dev/null
+```
+
+## Penjelasan
