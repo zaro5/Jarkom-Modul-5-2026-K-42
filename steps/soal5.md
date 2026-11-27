@@ -60,3 +60,7 @@ Untuk menguji soal 5, uji coba ping ke `8.8.8.8` dari Armisael dan juga jalankan
 ```bash
 iptables -S
 ```
+
+![alt text](../assets/5_Armisael-ping-google.png)
+![alt text](../assets/5_gendou-ipTables.png)
+

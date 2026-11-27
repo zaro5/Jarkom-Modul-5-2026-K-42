@@ -271,7 +271,7 @@ iface eth0 inet static
     up ip link set dev eth0 up
 ```
 
-### Pen-Pen
+### Pen-Penc
 
 ```bash
 auto lo
